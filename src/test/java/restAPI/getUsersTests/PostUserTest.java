@@ -1,12 +1,14 @@
 package restAPI.getUsersTests;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import restAPI.excelUtils.ExcelDataProvider;
 import restAPI.models.postUsersModels.postCreateNewUserRequestModel.PostCreateNewUserRequestModel;
 import restAPI.models.postUsersModels.postCreateNewUserResponseModel.PostCreateNewUserResponseModel;
 import restAPI.service.postUser_Service.PostUserService;
 
+import static org.hamcrest.Matchers.equalTo;
+import static restAPI.conditions.Conditions.bodyField;
 import static restAPI.conditions.Conditions.statusCode;
 import static restAPI.properties.TokenProperty.TOKEN;
 
@@ -30,4 +32,20 @@ public class PostUserTest {
         Assert.assertEquals(responseModel.getData().getName(), requestModel.getName());
         Assert.assertEquals(responseModel.getData().getEmail(), requestModel.getEmail());
     }
+
+    @Test(description = "POST create new user with wrong body data",
+          dataProvider = "Wrong body data for new user creation",
+          dataProviderClass = ExcelDataProvider.class)
+    public void postCreateUserWithWrongBodyData(String name, String email, String gender, String status, String message){
+            postUserService
+                .postCreateNewUser(TOKEN, new PostCreateNewUserRequestModel()
+                                                .setName(name)
+                                                .setEmail(email)
+                                                .setGender(gender)
+                                                .setStatus(status))
+                .shouldHave(statusCode(200),
+                        bodyField("code", equalTo(422)),
+                        bodyField("data[0].message", equalTo(message)));
+    }
+
 }
