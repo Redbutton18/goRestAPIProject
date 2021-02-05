@@ -18,16 +18,16 @@ import static restAPI.utils.dataGenerator.UserDataGenerator.getFakerUserName;
 public class PostCreateNewUserRequestModel{
 
 	@JsonProperty("gender")
-	private String gender;
+	private Object gender;
 
 	@JsonProperty("name")
-	private String name;
+	private Object name;
 
 	@JsonProperty("email")
-	private String email;
+	private Object email;
 
 	@JsonProperty("status")
-	private String status;
+	private Object status;
 
 	public PostCreateNewUserRequestModel randomize() {
 		this.name = getFakerUserName();

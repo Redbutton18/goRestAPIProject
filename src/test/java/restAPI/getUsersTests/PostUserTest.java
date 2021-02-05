@@ -36,7 +36,7 @@ public class PostUserTest {
     @Test(description = "POST create new user with wrong body data",
           dataProvider = "Wrong body data for new user creation",
           dataProviderClass = ExcelDataProvider.class)
-    public void postCreateUserWithWrongBodyData(String name, String email, String gender, String status, String message){
+    public void postCreateUserWithWrongBodyData(Object name, Object email, Object gender, Object status, String message){
             postUserService
                 .postCreateNewUser(TOKEN, new PostCreateNewUserRequestModel()
                                                 .setName(name)
