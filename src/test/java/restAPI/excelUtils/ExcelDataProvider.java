@@ -32,4 +32,11 @@ public class ExcelDataProvider {
         }
         return data;
     }
+
+    public static void main(String[] args) throws IOException {
+        ExcelUtils excelUtils = new ExcelUtils(path, sheet);
+
+        Object data = excelUtils.getCellData(1, 2);
+        System.out.println(data);
+    }
 }

@@ -21,20 +21,20 @@ public class ExcelUtils {
     }
 
     public Object getCellData(int rowNum, int colNum) {
-        DataFormatter formatter = new DataFormatter();
-        Object value = formatter.formatCellValue(sheet.getRow(rowNum).getCell(colNum));
-        return value;
-
-//        This code doesn't work properly (In out put Null pointer exception??)
-//        cell = sheet.getRow(rowNum).getCell(colNum);
-//        Object value = null;
-//        if(cell.getCellType() == CellType.STRING){
-//            value = cell.getStringCellValue();
-//        } else if(cell.getCellType() == CellType.NUMERIC){
-//            value = cell.getNumericCellValue();
-//        }
+//        DataFormatter formatter = new DataFormatter();
+//        Object value = formatter.formatCellValue(sheet.getRow(rowNum).getCell(colNum));
 //        return value;
-    }
+
+//        This code doesn't work properly (In output log - Null pointer exception??)
+        cell = sheet.getRow(rowNum).getCell(colNum);
+        Object value = null;
+        if(cell.getCellType() == CellType.STRING){
+            value = cell.getStringCellValue();
+        } else if(cell.getCellType() == CellType.NUMERIC){
+            value = cell.getNumericCellValue();
+        }
+        return value;
+}
 
     public int getRowCount() {
         int rowCount = 0;

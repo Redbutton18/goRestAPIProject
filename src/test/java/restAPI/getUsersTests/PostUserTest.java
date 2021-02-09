@@ -15,12 +15,12 @@ import static restAPI.properties.TokenProperty.TOKEN;
 public class PostUserTest {
 
     private PostUserService postUserService = new PostUserService();
+    PostCreateNewUserRequestModel requestModel = new PostCreateNewUserRequestModel().randomize();
 
     @Test(description = "POST Create new user test")
     public void postCreateNewUserTest(){
-        PostCreateNewUserRequestModel requestModel = new PostCreateNewUserRequestModel();
         PostCreateNewUserResponseModel responseModel = postUserService
-                .postCreateNewUser(TOKEN, requestModel.randomize())
+                .postCreateNewUser(TOKEN, requestModel)
                 .shouldHave(statusCode(200))
                 .responseAs(PostCreateNewUserResponseModel.class);
 
@@ -31,6 +31,15 @@ public class PostUserTest {
         Assert.assertEquals(responseModel.getData().getStatus(), "Active");
         Assert.assertEquals(responseModel.getData().getName(), requestModel.getName());
         Assert.assertEquals(responseModel.getData().getEmail(), requestModel.getEmail());
+    }
+
+    @Test(description = "POST create new user with existing email")
+    public void postCreateNewUserWithExistingEmail(){
+        postUserService
+                .postCreateNewUser(TOKEN, requestModel)
+                .shouldHave(statusCode(200),
+                        bodyField("code", equalTo(422)),
+                        bodyField("data[0].message", equalTo("has already been taken")));
     }
 
     @Test(description = "POST create new user with wrong body data",
@@ -47,5 +56,4 @@ public class PostUserTest {
                         bodyField("code", equalTo(422)),
                         bodyField("data[0].message", equalTo(message)));
     }
-
 }
