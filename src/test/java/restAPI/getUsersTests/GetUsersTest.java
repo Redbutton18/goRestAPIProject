@@ -65,6 +65,7 @@ public class GetUsersTest {
         data[6] = 1000000000;
         data[7] = "!@#$%^&*";
         data[8] = null;
+        data[9] = 1;
 
         return data;
     }
