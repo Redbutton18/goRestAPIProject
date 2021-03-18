@@ -61,7 +61,7 @@ public class GetUsersTest {
         data[2] = "asv";
         data[3] = 0;
         data[4] = -1;
-        data[5] = 1;
+        data[5] = -0;
         data[6] = 1000000000;
         data[7] = "!@#$%^&*";
         data[8] = null;
