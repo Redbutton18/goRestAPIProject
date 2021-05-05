@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test suite">
+    <test name="testNG">
+
+        <parameter name="userID" value="1542"/>
+
+        <classes>
+            <class name="restAPI.getUsersTests.ParametersExample" />
+        </classes>
+    </test>
+</suite>
