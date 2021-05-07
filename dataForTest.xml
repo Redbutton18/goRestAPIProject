@@ -3,7 +3,7 @@
 <suite name="Test suite">
     <test name="testNG">
 
-        <parameter name="userID" value="1542"/>
+        <parameter name="userID" value="1598"/>
 
         <classes>
             <class name="restAPI.getUsersTests.ParametersExample" />
