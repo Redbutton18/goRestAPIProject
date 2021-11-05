@@ -16,7 +16,7 @@ import static restAPI.properties.TokenProperty.TOKEN;
 public class GetUsersTest {
 
     private GetUsersService getUsersService = new GetUsersService();
-    private int userId = 2;
+    private int userId = 1433;
 
     @Test(description = "Get list with all users")
     public void getAllUsers(){
