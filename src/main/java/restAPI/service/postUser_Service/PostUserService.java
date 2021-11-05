@@ -16,7 +16,7 @@ public class PostUserService extends RestApiSetupService {
                 baseSetupHeaders(token)
                         .body(postRequestModel)
                         .when()
-                        .post("public-api/users")
+                        .post("public/v1/users")
                         .then().extract().response();
         return new AssertableResponse(register);
     }

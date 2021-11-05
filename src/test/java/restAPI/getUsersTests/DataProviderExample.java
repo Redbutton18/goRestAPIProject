@@ -18,9 +18,9 @@ public class DataProviderExample {
     public void getUserDetailsWithWrongUserId(Object wrongId) {
         getUsersService
                 .getUserDetails(TOKEN, wrongId)
-                .shouldHave(statusCode(200),
-                        bodyField("data.message", containsString("Resource not found")),
-                        bodyField("code", equalTo(404)));
+                .shouldHave(statusCode(404),
+                        bodyField("meta", equalTo(null)),
+                        bodyField("data.message", containsString("Resource not found")));
     }
 
     @DataProvider(name = "WrongUserIDs")

@@ -12,12 +12,26 @@ import lombok.experimental.Accessors;
 @Setter
 @ToString
 @Accessors(chain = true)
-public class Meta{
+public class Links{
 
-	@JsonProperty("pagination")
-	private Pagination pagination;
+	@JsonProperty("next")
+	private String next;
 
-	public Pagination getPagination(){
-		return pagination;
+	@JsonProperty("current")
+	private String current;
+
+	@JsonProperty("previous")
+	private Object previous;
+
+	public String getNext(){
+		return next;
+	}
+
+	public String getCurrent(){
+		return current;
+	}
+
+	public Object getPrevious(){
+		return previous;
 	}
 }

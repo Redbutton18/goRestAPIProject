@@ -36,7 +36,7 @@ public class FactoryExample {
         @Factory
         public Object[] factoryMethod() {
             return new Object[]{
-                    new FactoryExample(1598),
+                    new FactoryExample(1861),
             };
         }
     }

@@ -15,7 +15,7 @@ public class ParametersExample {
 
     @Test
     @Parameters(value = "userID")
-    public void getUser(@Optional("1598") int userID){
+    public void getUser(@Optional("1861") int userID){
         GetUserDetailsResponse response = getUsersService
                 .getUserDetails(TOKEN, userID)
                 .shouldHave(statusCode(200))

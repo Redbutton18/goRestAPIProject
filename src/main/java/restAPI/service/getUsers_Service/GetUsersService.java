@@ -14,7 +14,7 @@ public class GetUsersService extends RestApiSetupService {
         Response register =
                 baseSetupHeaders(token)
                 .when()
-                .get("public-api/users")
+                .get("public/v1/users")
                 .then().extract().response();
 
         return new AssertableResponse(register);
@@ -26,7 +26,7 @@ public class GetUsersService extends RestApiSetupService {
         Response register =
                 baseSetupHeaders(token)
                 .when()
-                .get("public-api/users/" + userId)
+                .get("public/v1/users/" + userId)
                 .then().extract().response();
 
         return new AssertableResponse(register);

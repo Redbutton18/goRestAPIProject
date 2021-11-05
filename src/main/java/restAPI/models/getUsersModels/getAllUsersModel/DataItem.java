@@ -17,21 +17,35 @@ public class DataItem{
 	@JsonProperty("gender")
 	private String gender;
 
-	@JsonProperty("updated_at")
-	private String updatedAt;
-
 	@JsonProperty("name")
 	private String name;
 
-	@JsonProperty("created_at")
-	private String createdAt;
-
 	@JsonProperty("id")
-	private Integer id;
+	private int id;
 
 	@JsonProperty("email")
 	private String email;
 
 	@JsonProperty("status")
 	private String status;
+
+	public String getGender(){
+		return gender;
+	}
+
+	public String getName(){
+		return name;
+	}
+
+	public int getId(){
+		return id;
+	}
+
+	public String getEmail(){
+		return email;
+	}
+
+	public String getStatus(){
+		return status;
+	}
 }

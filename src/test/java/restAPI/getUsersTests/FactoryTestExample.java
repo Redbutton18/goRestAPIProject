@@ -28,7 +28,7 @@ public class FactoryTestExample {
         @Factory
         public Object[] factoryMethod() {
             return new Object[] {
-                    new FactoryTestExample(1598)
+                    new FactoryTestExample(1861)
             };
         }
     }

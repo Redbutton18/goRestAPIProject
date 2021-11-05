@@ -21,14 +21,11 @@ public class PostUserTest {
     public void postCreateNewUserTest(){
         PostCreateNewUserResponseModel responseModel = postUserService
                 .postCreateNewUser(TOKEN, requestModel)
-                .shouldHave(statusCode(200))
+                .shouldHave(statusCode(201))
                 .responseAs(PostCreateNewUserResponseModel.class);
 
-        int code = responseModel.getCode();
-
-        Assert.assertEquals(code, 201);
-        Assert.assertEquals(responseModel.getData().getGender(), "Male");
-        Assert.assertEquals(responseModel.getData().getStatus(), "Active");
+        Assert.assertEquals(responseModel.getData().getGender(), "male");
+        Assert.assertEquals(responseModel.getData().getStatus(), "active");
         Assert.assertEquals(responseModel.getData().getName(), requestModel.getName());
         Assert.assertEquals(responseModel.getData().getEmail(), requestModel.getEmail());
     }
@@ -37,8 +34,8 @@ public class PostUserTest {
     public void postCreateNewUserWithExistingEmail(){
         postUserService
                 .postCreateNewUser(TOKEN, requestModel)
-                .shouldHave(statusCode(200),
-                        bodyField("code", equalTo(422)),
+                .shouldHave(statusCode(422),
+                        bodyField("meta", equalTo(null)),
                         bodyField("data[0].message", equalTo("has already been taken")));
     }
 
@@ -52,8 +49,8 @@ public class PostUserTest {
                                                 .setEmail(email)
                                                 .setGender(gender)
                                                 .setStatus(status))
-                .shouldHave(statusCode(200),
-                        bodyField("code", equalTo(422)),
+                .shouldHave(statusCode(422),
+                        bodyField("meta", equalTo(null)),
                         bodyField("data[0].message", equalTo(message)));
     }
 }

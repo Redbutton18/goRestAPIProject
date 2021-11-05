@@ -3,7 +3,7 @@ package restAPI.getUsersTests;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import restAPI.models.getUsersModels.getAllUsersModel.GetUsersResponseModel;
+import restAPI.models.getUsersModels.getAllUsersModel.GetAllUsersResponseModel;
 import restAPI.models.getUsersModels.getUserDetailsModel.GetUserDetailsResponse;
 import restAPI.service.getUsers_Service.GetUsersService;
 
@@ -16,14 +16,14 @@ import static restAPI.properties.TokenProperty.TOKEN;
 public class GetUsersTest {
 
     private GetUsersService getUsersService = new GetUsersService();
-    private int userId = 1598;
+    private int userId = 2;
 
     @Test(description = "Get list with all users")
     public void getAllUsers(){
-        GetUsersResponseModel response = getUsersService
+        GetAllUsersResponseModel response = getUsersService
                 .getAllUsers(TOKEN)
                 .shouldHave(statusCode(200))
-                .responseAs(GetUsersResponseModel.class);
+                .responseAs(GetAllUsersResponseModel.class);
 
         int dataLength = response.getData().size();
         int limit = response.getMeta().getPagination().getLimit();
@@ -48,9 +48,9 @@ public class GetUsersTest {
 
         getUsersService
                 .getUserDetails(TOKEN, wrongId)
-                .shouldHave(statusCode(200),
-                        bodyField("data.message", containsString("Resource not found")),
-                        bodyField("code", equalTo(404)));
+                .shouldHave(statusCode(404),
+                        bodyField("meta", equalTo(null)),
+                        bodyField("data.message", containsString("Resource not found")));
     }
 
     @DataProvider(name = "WrongUserIDs")

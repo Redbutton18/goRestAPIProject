@@ -15,14 +15,37 @@ import lombok.experimental.Accessors;
 public class Pagination{
 
 	@JsonProperty("total")
-	private Integer total;
+	private int total;
 
 	@JsonProperty("pages")
-	private Integer pages;
+	private int pages;
 
 	@JsonProperty("limit")
-	private Integer limit;
+	private int limit;
+
+	@JsonProperty("links")
+	private Links links;
 
 	@JsonProperty("page")
-	private Integer page;
+	private int page;
+
+	public int getTotal(){
+		return total;
+	}
+
+	public int getPages(){
+		return pages;
+	}
+
+	public int getLimit(){
+		return limit;
+	}
+
+	public Links getLinks(){
+		return links;
+	}
+
+	public int getPage(){
+		return page;
+	}
 }
